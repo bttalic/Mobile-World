@@ -1,0 +1,41 @@
+<div class="nav-bar bg-color-darken">
+	<div class="nav-bar-inner bg-color-darken">
+		<a href="#"><span class="element brand">MobileWorld</span></a>
+		<span class="divider"></span>
+
+		<ul class="menu">
+			
+			<li><%= link_to raw("<i class=\"icon-home\">Home</i>"), root_path %></li>
+			<li><%= link_to raw("<i class=\"icon-phone\">Phones</i>"), phones_path %><li>
+			<li><%= link_to raw("<i class=\"icon-info\">About</i>"), about_path %></li>
+		</ul>
+		<% if signed_in? %>
+		<ul class="menu place-right">
+			<li data-role="dropdown" class="user-info">
+				<a><%= current_user.name %>
+					<%= image_tag current_user.avatar.url %></a>
+				
+
+				<ul class="dropdown-menu">
+					<li><%= link_to "Profile", current_user %></li>
+					<li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+					<% if current_user.admin? %>
+					<li><%=link_to raw("<i class=\"icon-phone\">Add Phone</i>"), '/new_phone' %></li>
+					<li><%= link_to raw("<i class=\"icon-user\">Users</i>"), users_path %><li>
+					<%end%>
+					<li class="divider"></li>
+					<li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+				</ul>
+				</li>
+			</ul>
+			<%else%>
+			<ul class="menu place-right">
+				<li><div class="button-set" data-role="button-set">
+				<%=link_to 'Sign in', signin_path, class:"button mini bg-color-blue" %>
+				<%=link_to 'Sign up', signup_path, class:"button mini bg-color-orange" %>
+				</div></li>
+			</ul>
+			<%end%>
+
+		</div>
+	</div>

@@ -1,0 +1,19 @@
+<% if  signed_in? && current_user.admin? %>
+<% provide(:title, 'New Phone') %>
+
+<div class="page-region">
+ <div class="page-region-content">
+
+  <div class="span6 offset3">
+
+<h1>New phone</h1>
+
+<%= render 'form' %>
+
+<%= link_to raw("<i class=\"icon-arrow-left-3\"></i>"), phones_path %>
+</div>
+</div>
+</div>
+<% else %>
+<h1>You are not an admin, and don't try to play smart and enter url by hand</h1>
+<% end %>

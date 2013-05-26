@@ -1,0 +1,195 @@
+
+<%= form_for @phone, :html => { :multipart => true } do |f| %>
+  <% if @phone.errors.any? %>
+
+      <div class="notice bg-color-red">The form contains <%= pluralize(@phone.errors.count, "error") %>.</div>
+
+      <ul>
+      <% @phone.errors.full_messages.each do |msg| %>
+        <li class="fg-color-red"><%= msg %></li>
+      <% end %>
+      </ul>
+
+  <% end %>
+
+  <%= f.label :make %>
+  <div class="input-control text">
+    <%= f.text_field :make %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :model %>
+  <div class="input-control text">
+    <%= f.text_field :model %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :height_in_mm %>
+  <div class="input-control text">
+    <%= f.number_field :sizeh %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :width_in_mm %>
+    <div class="input-control text">
+    <%= f.number_field :sizew %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :depth_in_mm %><br />
+    <div class="input-control text">
+    <%= f.number_field :sized %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :weight_in_grams %><br />
+    <div class="input-control text">
+    <%= f.number_field :weight %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :processor %><br />
+    <div class="input-control text">
+    <%= f.text_field :processor %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :processor_frequency %><br />
+    <div class="input-control text">
+    <%= f.number_field :procfrequency %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :battery_capacity_in_mAh %><br />
+    <div class="input-control text">
+    <%= f.number_field :batterycapacity %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :battery_talk_time_in_hours %><br />
+    <div class="input-control text">
+    <%= f.number_field :talktime %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :battery_standby_time_in_hours %><br />
+    <div class="input-control text">
+    <%= f.number_field :standbytime %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :screen_size_in_inch %><br />
+    <div class="input-control text">
+    <%= f.number_field :screensize %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :screen_type %><br />
+    <div class="input-control text">
+    <%= f.text_field :screentype %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :screen_number_of_colors %><br />
+    <div class="input-control text">
+    <%= f.number_field :screencolors %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :screen_resolution_width %><br />
+    <div class="input-control text">
+    <%= f.number_field :screenresw %>
+    <button class="btn-clear"></button>
+  </div>
+   <%= f.label :screen_resolution_height %><br />
+    <div class="input-control text">
+   <%= f.number_field :screenresh %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :main_camera_total_resolution %><br />
+    <div class="input-control text">
+    <%= f.number_field :mcamera %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :main_camera_picture_resolution_height %><br />
+    <div class="input-control text">
+    <%= f.number_field :mcameraresph %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :main_camera_picture_resolution_width %><br />
+    <div class="input-control text">
+    <%= f.number_field :mcamerarespw %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :main_camera_video_resolution_height %><br />
+    <div class="input-control text">
+    <%= f.number_field :mcameraresvh %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :main_camera_video_resolution_width %><br />
+    <div class="input-control text">
+    <%= f.number_field :mcameraresvw %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :main_camera_video_resolution %><br />
+  <div class="input-control text">
+    <%= f.text_field :mcamerav %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :secondary_camera_total_resolution %><br />
+    <div class="input-control text">
+    <%= f.number_field :scamera %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :internal_memory %><br />
+    <div class="input-control text">
+    <%= f.number_field :intmemory %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :external_memory %><br />
+   <div class="input-control text">
+     <%= f.number_field :extmemory %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :os %><br />
+    <div class="input-control text">
+    <%= f.text_field :osname %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :os_version %><br />
+    <div class="input-control text">
+    <%= f.text_field :osversion %>
+    <button class="btn-clear"></button>
+  </div>
+  <%= f.label :gpu %><br />
+    <div class="input-control text">
+    <%= f.text_field :gpu %>
+    <button class="btn-clear"></button>
+  </div>
+  <div class="input-control select">
+    <%= f.label :bluetooth %>
+    <%= f.select(:bt, [['Yes',1],['No',0]]) %>
+  </div>
+  <div class="input-control select">
+    <%= f.label :wlan %>
+    <%= f.select(:wlan, [['Yes',1],['No',0]]) %>
+  </div>
+  <div class="input-control select">
+    <%= f.label :infrared %>
+    <%= f.select(:ir, [['Yes',1],['No',0]]) %>
+  </div>
+  <div class="input-control select">
+    <%= f.label :usb %>
+    <%= f.select(:usb, [['Yes',1],['No',0]]) %>
+  </div>
+  <div class="input-control select">
+    <%= f.label :nfc %>
+    <%= f.select(:nfc, [['Yes',1],['No',0]]) %>
+  </div>
+  <div class="input-control select">
+    <%= f.label :'3G' %>
+    <%= f.select(:g3g, [['Yes',1],['No',0]]) %>
+  </div>
+  <div class="input-control select">
+    <%= f.label :gprs %>
+    <%= f.select(:gprs, [['Yes',1],['No',0]]) %>
+  </div>
+  <%= f.label :other_info %><br />
+    <div class="input-control text">
+    <%= f.text_field :other %>
+    <button class="btn-clear"></button>
+  </div>
+  <div class="field">
+  <%= f.label :Choose_a_picture %><br />
+  <%= f.file_field :picture %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

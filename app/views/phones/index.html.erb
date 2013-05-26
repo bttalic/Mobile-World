@@ -1,0 +1,37 @@
+<% provide(:title, 'Phones') %>
+<h1>Phones</h1>
+
+<div class="span offset1">
+<% @phones.each_with_index do |phone, index| %>
+<% if index%2==0 %>
+  <div class="tile bg-color-blue double">
+    <%else%>
+    <div class="tile bg-color-orange double">
+    <%end%>
+    <div class="tile-content">
+     
+      <div class="phone_index_image"><%= link_to image_tag(phone.picture.url, :height => "100px", :width => "100px"), phone %></div>
+     
+      <div class="phone_index_link"><%= link_to phone.make+' '+phone.model, phone %></div>
+      <div class="phone_index_link">Comments: <%= phone.comments.count %></div>
+     
+      <%if signed_in? &&  current_user.admin? %>
+  
+      <div class="phone_index_admin_links">
+        <%= link_to 'Show', phone %> |
+      <%= link_to 'Edit', edit_phone_path(phone) %> |
+      <%= link_to 'Delete', phone, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+<% end %>
+</div>
+
+<div class="clear" style="clear:both;"></div>
+<br />
+<div class="phone_index_page_links"><%= will_paginate @posts %></div>
+<%if current_user.admin? %>
+<%= link_to 'New Phone', new_phone_path, class:"button bg-color-purple" %>
+<% end %>

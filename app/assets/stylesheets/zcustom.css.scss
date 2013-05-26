@@ -1,0 +1,41 @@
+
+.nav-bar-inner .user-info{
+	img {
+		max-height: 36px;
+	
+	}
+}
+
+
+.nav-bar-inner .button-set,
+.nav-bar-inner .button-set .button{
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+.user-info{
+	h4{
+		margin-bottom: 5px;
+	}
+	img {
+		max-width:190px;
+	}
+}
+
+.page-header-content{
+	border-bottom: 1px  dashed #1e1e1e;
+}
+
+.container{
+	min-height:500px;
+}
+
+footer {
+	bottom:0;
+}
+
+.timestamp {
+  font-size: x-small;
+  margin-bottom:0px;
+  
+}

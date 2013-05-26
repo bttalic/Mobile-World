@@ -1,0 +1,29 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user_comment_image{
+	
+
+}
+.user_comment_name{
+	position:relative;
+left:100px;
+top:-100px;
+a{
+	word-break:break-all;
+	font-size:15px;
+}
+
+}
+.comment_content{
+	position:relative;
+left:100px;
+top:-80px;
+
+
+}
+.comment_links{
+position:relative;
+bottom:45px;
+}

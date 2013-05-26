@@ -1,0 +1,117 @@
+<% provide(:title, @phone.model) %>
+<div class="page-region">
+ <div class="page-region-content">
+
+<p id="notice"><%= notice %></p>
+
+<ul class="accordion" data-role="accordion">
+
+<li class="active" >
+<a href="#"> <%= @phone.make+' '+@phone.model %> </a>
+
+
+<div id="phone_show">
+<table>
+	<tr><td></td><td><%= image_tag(@phone.picture.url, :height => "100px", :width => "100px") %></td></tr>
+	<tr><td><b>Manufacturer</b></td><td><%= @phone.make %></td></tr>
+	<tr><td><b>Model</b></td><td><%= @phone.model %></td></tr>
+	<tr><td><b>Size</b></td><td><%= @phone.sizeh.to_s+'x'+@phone.sizew.to_s+'x'+@phone.sized.to_s %> mm</td></tr>
+	<tr><td><b>Weight</b></td><td><%= @phone.weight %> grams</td></tr>
+	<tr><td><b>Processor</b></td><td><%= @phone.processor %></td></tr>
+	<tr><td><b>Processor frequency</b></td><td><%= @phone.procfrequency %> GHz</td></tr>
+	<tr><td><b>Battery capacity</b></td><td><%= @phone.batterycapacity %>mAh</td></tr>
+	<tr><td><b>Talk time</b></td><td><%= @phone.talktime %> hours</td></tr>
+	<tr><td><b>Stand-by time</b></td><td><%= @phone.standbytime %>hours</td></tr>
+	<tr><td><b>Screen size</b></td><td><%= @phone.screensize %> inches</td></tr>
+	<tr><td><b>Screen type</b></td><td><%= @phone.screentype %></td></tr>
+	<tr><td><b>Screen colors</b></td><td><%= @phone.screencolors %> M</td></tr>
+	<tr><td><b>Screen resolution</b></td><td><%= @phone.screenresw.to_s+'x'+@phone.screenresh.to_s %> pixels</td></tr>
+	<tr><td><b>Main camera</b></td><td><%= @phone.mcamera %> MP</td></tr>
+	<tr><td><b>Main camera resolution(picture)</b></td><td><%= @phone.mcamerarespw.to_s+'x'+@phone.mcameraresph.to_s %> pixels</td></tr>
+	<tr><td><b>Main camera resolution(video)</b></td><td><%= @phone.mcameraresvw.to_s+'x'+@phone.mcameraresvh.to_s+' pixels('+@phone.mcamerav+')' %></td></tr>
+	<% if @phone.scamera %>
+	<tr><td><b>Secondary camera resolution</b></td><td><%= @phone.scamera %> MP</td></tr>
+	<% end %>
+	<tr><td><b>Internal memory</b></td><td><%= @phone.intmemory %> GB</td></tr>
+	<% if @phone.extmemory %>
+	<tr><td><b>External memory</b></td><td><%=  @phone.extmemory %> GB</td></tr>
+	<% end %>
+	<tr><td><b>OS</b></td><td><%= @phone.osname+' '+@phone.osversion %></td></tr>
+	<tr><td><b>GPU</b></td><td><%= @phone.gpu %></td></tr>
+	<tr><td><b>WLAN</b></td><td><%= @phone.wlan ? "Yes" : "No" %></td></tr>
+	<tr><td><b>BlueTooth</b></td><td><%= @phone.bt ? "Yes" : "No" %></td></tr>
+	<tr><td><b>InfraRed</b></td><td><%= @phone.ir ? "Yes" : "No" %></td></tr>
+	<tr><td><b>USB</b></td><td><%= @phone.usb ? "Yes" : "No" %></td></tr>
+	<tr><td><b>NFC</b></td><td><%= @phone.nfc ? "Yes" : "No" %></td></tr>
+	<tr><td><b>GPRS</b></td><td><%= @phone.gprs ? "Yes" : "No" %></td></tr>
+	<tr><td><b>3G</b></td><td><%= @phone.g3g ? "Yes" : "No" %></td></tr>
+	<% if @phone.other!="" %>
+	<tr><td><b>Other</b></td><td><%= @phone.other %></td></tr>
+	<% end %>
+</table>
+<% if signed_in? &&  current_user.admin? %>
+<%= link_to 'Edit', edit_phone_path(@phone) %>
+<% end %>
+</div>
+</li>
+<li>
+<a href="#"> Comments </a>
+<div>
+
+<div class="span">
+<% @comments.each do |c| %>
+
+
+	<div class="tile double bg-color-orange">
+    <div class="tile-content">
+	<div class="user_comment_image"><%= link_to image_tag(User.find(c.user_id).avatar.url, :height => "100px", :width => "100px"),User.find(c.user_id) %></div>
+	<div class="user_comment_name"><%= link_to User.find(c.user_id).name, User.find(c.user_id) %></div>
+	<div class="comment_content"><b><%= c.content %></b></br><div class="timestamp">Posted <%= time_ago_in_words(c.created_at) %> ago.</div>	</div>
+	
+	<% if signed_in? && (current_user.id == c.user_id || current_user.admin) %>
+	<div class="comment_links"><%= link_to 'Delete', c, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+	<% end %>
+
+	</div>
+    </div>
+
+		
+<% end %>
+</div>
+</div>
+</br>
+
+
+<% if signed_in? %>
+<div> 
+	<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+  <div class="notice bg-color-red">The form contains <%= pluralize(@comment.errors.count, "error") %>.</div>
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+
+  <% end %>
+
+  <div class="field">
+    <%= f.text_area :content, :rows => 6%>
+  </div>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :phone_id, :value => @phone.id %>
+  <div class="actions">
+    <%= f.submit "Add Comment" %>
+  </div>
+<% end %>
+
+ </div>
+ <% end %>
+</li>
+</ul>
+
+
+<%= link_to raw("<i class=\"icon-arrow-left-3\"></i>"), phones_path %>
+
+</div>
+</div>
