@@ -12,7 +12,17 @@
 
 <div id="phone_show">
 <table>
-	<tr><td></td><td><%= image_tag(@phone.picture.url, :height => "100px", :width => "100px") %></td></tr>
+	<tr><td>
+		<% if signed_in? %>
+        <% if @compares.phone1_id==@phone.id || @compares.phone2_id==@phone.id || @compares.phone3_id==@phone.id %>
+        <%= link_to 'Remove', compareremove_path(:id => @phone.id), class:"button bg-color-redLight" %>
+        <% elsif @compares.phone1_id && @compares.phone2_id && @compares.phone3_id %>
+
+        <% else %>
+        <%= link_to 'Compare', compareadd_path(:id => @phone.id), class:"button bg-color-blue" %>
+        <% end %>
+        <%end%>
+    </td><td><%= image_tag(@phone.picture.url, :height => "100px", :width => "100px") %></td></tr>
 	<tr><td><b>Manufacturer</b></td><td><%= @phone.make %></td></tr>
 	<tr><td><b>Model</b></td><td><%= @phone.model %></td></tr>
 	<tr><td><b>Size</b></td><td><%= @phone.sizeh.to_s+'x'+@phone.sizew.to_s+'x'+@phone.sized.to_s %> mm</td></tr>
@@ -62,7 +72,7 @@
 <% @comments.each do |c| %>
 
 
-	<div class="tile double bg-color-orange">
+	<div class="tile double bg-color-<%=@colors[rand(16)]%>">
     <div class="tile-content">
 	<div class="user_comment_image"><%= link_to image_tag(User.find(c.user_id).avatar.url, :height => "100px", :width => "100px"),User.find(c.user_id) %></div>
 	<div class="user_comment_name"><%= link_to User.find(c.user_id).name, User.find(c.user_id) %></div>

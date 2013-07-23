@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 	def show
 		@user=User.find(params[:id])
 		@phones=@user.phones.paginate(:page => params[:page], :per_page => 12)
+		@colors=["green", "greenDark","greenLight","magenta","pink","pinkDark","yellow","darken","purple","teal","blue","blueDark" ,"orange","orangeDark","red","redLight"]
 	end
 
 	def create
@@ -40,6 +41,7 @@ class UsersController < ApplicationController
 
 	def index
 		@users = User.paginate(:page => params[:page], :per_page => 20)
+		 @colors=["green", "greenDark","greenLight","magenta","pink","pinkDark","yellow","darken","purple","teal","blue","blueDark" ,"orange","orangeDark","red","redLight"]
 	end
 
 	def destroy

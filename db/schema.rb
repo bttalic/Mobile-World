@@ -11,12 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525211232) do
+ActiveRecord::Schema.define(:version => 20130526110917) do
 
   create_table "comments", :force => true do |t|
     t.string   "content"
     t.integer  "phone_id"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "compares", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "phone1_id"
+    t.integer  "phone2_id"
+    t.integer  "phone3_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -2,6 +2,7 @@ module SessionsHelper
 	def sign_in(user)
 		cookies.permanent[:remember_token] = user.remember_token
 		current_user = user
+		Compare.new(:user_id => current_user.id).save
 	end
 
 	def current_user=(user)
@@ -28,6 +29,9 @@ module SessionsHelper
 	end
 
 	def sign_out
+		if current_user
+			Compare.find_by_user_id(current_user.id).destroy
+		end
 		current_user = nil
 		cookies.delete(:remember_token)
 	end

@@ -1,5 +1,8 @@
 Mobileworld::Application.routes.draw do
  
+  #resources :compares
+
+
   get "users/new"
 
   root to: 'static_pages#home'
@@ -15,6 +18,9 @@ Mobileworld::Application.routes.draw do
 
     resources :phones
     match '/new_phone', to: 'phones#new'
+    match '/compareadd',  to: 'compares#add'
+    match '/compareremove',  to: 'compares#remove'
+    match '/compare',  to:  'compares#show'
 resources :comments
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,7 +1,8 @@
 <div class="nav-bar bg-color-darken">
 	<div class="nav-bar-inner bg-color-darken">
-		<a href="#"><span class="element brand">MobileWorld</span></a>
-		<span class="divider"></span>
+		<a href="/"><%= image_tag('logo.png', class:'place-left',  style:"height:40px") %></a>
+		<a href="/"><span class="element brand", style="line-height:40px">MobileWorld</span></a>
+		<span class="divider" style="line-height:40px"></span>
 
 		<ul class="menu">
 			
@@ -11,6 +12,9 @@
 		</ul>
 		<% if signed_in? %>
 		<ul class="menu place-right">
+		
+			<%= link_to "View Comparison", compare_path, class:'button bg-color-blue place-left' %>
+
 			<li data-role="dropdown" class="user-info">
 				<a><%= current_user.name %>
 					<%= image_tag current_user.avatar.url %></a>
@@ -27,6 +31,7 @@
 					<li><%= link_to "Sign out", signout_path, method: "delete" %></li>
 				</ul>
 				</li>
+
 			</ul>
 			<%else%>
 			<ul class="menu place-right">

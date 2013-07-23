@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  phone1_id: 1
+  phone2: 1
+  phone3_id: 1
+
+two:
+  user_id: 1
+  phone1_id: 1
+  phone2: 1
+  phone3_id: 1

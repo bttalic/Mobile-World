@@ -3,7 +3,10 @@ class PhonesController < ApplicationController
   # GET /phones.json
   def index
     @phones = Phone.paginate(:page => params[:page], :per_page => 12)
-
+    @colors=["green", "greenDark","greenLight","magenta","pink","pinkDark","yellow","darken","purple","teal","blue","blueDark","orange","orangeDark","red","redLight"]
+    if signed_in?
+      @compares = Compare.find_by_user_id(current_user.id)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @phones }
@@ -13,10 +16,14 @@ class PhonesController < ApplicationController
   # GET /phones/1
   # GET /phones/1.json
   def show
-    @phone = Phone.find(params[:id])
-     @comment = Comment.new
-    @comments = Comment.where(:phone_id => @phone.id)
-    respond_to do |format|
+   @colors=["green", "greenDark","greenLight","magenta","pink","pinkDark","yellow","darken","purple","teal","blue","blueDark" ,"orange","orangeDark","red","redLight"]
+   @phone = Phone.find(params[:id])
+   @comment = Comment.new
+   @comments = Comment.where(:phone_id => @phone.id)
+   if signed_in?
+    @compares = Compare.find_by_user_id(current_user.id)
+  end
+  respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @phone }
     end

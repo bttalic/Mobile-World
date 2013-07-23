@@ -28,7 +28,7 @@
 
    			<% @phones.each do |phone| %>
 
-   			<div class="tile double">
+   			<div class="tile bg-color-<%=@colors[rand(16)]%> double">
    				<div class="tile-content">
    					<div class="phone_index_image"><%= link_to image_tag(phone.picture.url, :height => "100px", :width => "100px"), phone %></div>
    					<div class="phone_index_link"><%= link_to phone.make+' '+phone.model, phone %></div>

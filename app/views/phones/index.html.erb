@@ -3,11 +3,9 @@
 
 <div class="span offset1">
 <% @phones.each_with_index do |phone, index| %>
-<% if index%2==0 %>
-  <div class="tile bg-color-blue double">
-    <%else%>
-    <div class="tile bg-color-orange double">
-    <%end%>
+
+ <div class="tile bg-color-<%=@colors[rand(16)]%> double">
+
     <div class="tile-content">
      
       <div class="phone_index_image"><%= link_to image_tag(phone.picture.url, :height => "100px", :width => "100px"), phone %></div>
@@ -23,6 +21,17 @@
       <%= link_to 'Delete', phone, method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
       <% end %>
+      <% if signed_in? %>
+      <div class="compare_status">
+        <% if @compares.phone1_id==phone.id || @compares.phone2_id==phone.id || @compares.phone3_id==phone.id %>
+        <%= link_to 'Remove', compareremove_path(:id => phone.id), class:"button bg-color-redLight" %>
+        <% elsif @compares.phone1_id && @compares.phone2_id && @compares.phone3_id %>
+
+        <% else %>
+        <%= link_to 'Compare', compareadd_path(:id => phone.id), class:"button bg-color-blue" %>
+        <% end %>
+      </div>
+      <% end %>
     </div>
   </div>
 
@@ -32,6 +41,6 @@
 <div class="clear" style="clear:both;"></div>
 <br />
 <div class="phone_index_page_links"><%= will_paginate @posts %></div>
-<%if current_user.admin? %>
+<%if signed_in? &&  current_user.admin? %>
 <%= link_to 'New Phone', new_phone_path, class:"button bg-color-purple" %>
 <% end %>

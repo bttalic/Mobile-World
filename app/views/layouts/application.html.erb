@@ -6,12 +6,13 @@
 <%= javascript_include_tag "application" %>
 <%= csrf_meta_tags %>
 </head>
-<body class="metrouicss">
+<body class="metrouicss" onload="prettyPrint()">
 <%= render 'layouts/header' %>
 <div class="container">
 	<% flash.each do |key, value| %>
 <div class="notice bg-color-<%= key %>"><%= value %></div>
 <% end %>
+
 <%= yield %>
 </div>
 <%= render 'layouts/footer' %>

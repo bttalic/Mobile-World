@@ -1,0 +1,176 @@
+<% provide(:title, 'Comparison') %>
+<div class="page-region">
+ <div class="page-region-content">
+
+<p id="notice"><%= notice %></p>
+
+<div id="phone_show">
+<table>
+	<tr>
+		<td></td>
+		<td>
+		<% if @phone1 %>
+			<%= link_to image_tag(@phone1.picture.url, :height => "100px", :width => "100px"), @phone1 %>
+			<%= link_to 'Remove', compareremove_path(:id => @phone1.id), class:"button bg-color-redLight" %>
+		<% else %>
+
+		<% end %>
+
+		</td>
+		<td>
+		<% if @phone2 %>
+			<%= link_to image_tag(@phone2.picture.url, :height => "100px", :width => "100px"), @phone2 %>
+			<%= link_to 'Remove', compareremove_path(:id => @phone2.id), class:"button bg-color-redLight" %>
+		<% else %>
+
+		<% end %>
+		</td>
+			
+		<td>
+			<% if @phone3 %>
+			<%= link_to image_tag(@phone3.picture.url, :height => "100px", :width => "100px"), @phone3 %>
+			<%= link_to 'Remove', compareremove_path(:id => @phone3.id), class:"button bg-color-redLight" %>
+		<% else %>
+
+		<% end %>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Manufacturer</b></td>
+		<td><%= @phone1 ? @phone1.make : "" %></td>
+		<td><%= @phone2 ? @phone2.make : "" %></td>
+		<td><%= @phone3 ? @phone3.make : "" %></td>
+	</tr>
+	<tr>
+		<td><b>Model</b></td>
+		<td><%= @phone1 ? @phone1.model : "" %></td>
+		<td><%= @phone2 ? @phone2.model : "" %></td>
+		<td><%= @phone3 ? @phone3.model : "" %></td>
+	</tr>
+	<tr>
+		<td><b>Size</b></td>
+		<%= compare3D('size') %>
+	</tr>
+	<tr>
+		<td><b>Weight</b></td>
+		<%= compareSmaller('weight') %>
+	</tr>
+	<tr>
+		<td><b>Processor</b></td>
+		<td><%= @phone1 ? @phone1.processor : "" %></td>
+		<td><%= @phone2 ? @phone2.processor : "" %></td>
+		<td><%= @phone3 ? @phone3.processor : "" %></td>
+	</tr>
+	<tr>
+		<td><b>Processor frequency</b></td>
+		<%= compareBiger('procfrequency') %>
+	</tr>
+	<tr>
+		<td><b>Battery capacity</b></td>
+		<%= compareBiger('batterycapacity') %>
+	</tr>
+	<tr>
+		<td><b>Talk time</b></td>
+		<%= compareBiger('talktime') %>
+	</tr>
+	<tr>
+		<td><b>Stand-by time</b></td>
+		<%= compareBiger('standbytime') %>
+	</tr>
+	<tr>
+		<td><b>Screen size</b></td>
+		<%= compareBiger('screensize') %>
+	</tr>
+	<tr>
+		<td><b>Screen type</b></td>
+		<td><%= @phone1 ? @phone1.screentype : "" %></td>
+		<td><%= @phone2 ? @phone2.screentype : "" %></td>
+		<td><%= @phone3 ? @phone3.screentype : "" %></td>
+	</tr>
+	<tr>
+		<td><b>Screen colors</b></td>
+		<%= compareBiger('screencolors') %>
+	</tr>
+	<tr>
+		<td><b>Screen resolution</b></td>
+		<%= compare2D('screenres') %>
+	</tr>
+	<tr>
+		<td><b>Main camera</b></td>
+		<%= compareBiger('mcamera') %>
+	</tr>
+	<tr>
+		<td><b>Main camera resolution(picture)</b></td>
+		<%= compare2D('mcameraresp') %>
+	</tr>
+	<tr>
+		<td><b>Main camera resolution(video)</b></td>
+		<%= compare2D('mcameraresv') %>
+	</tr>
+	<tr>
+		<td><b>Secondary camera resolution</b></td>
+		<%= compareBiger('scamera') %>
+	</tr>
+	<tr>
+		<td><b>Internal memory</b></td>
+		<%= compareBiger('intmemory') %>
+	</tr>
+	<tr>
+		<td><b>External memory</b></td>
+		<%= compareBiger('extmemory') %>
+	</tr>
+	<tr>
+		<td><b>OS</b></td>
+		<td><%= @phone1 ? @phone1.osname+' '+@phone1.osversion : "" %></td>
+		<td><%= @phone2 ? @phone2.osname+' '+@phone2.osversion : "" %></td>
+		<td><%= @phone3 ? @phone3.osname+' '+@phone3.osversion : "" %></td>
+	</tr>
+	<tr>
+		<td><b>GPU</b></td>
+		<td><%= @phone1 ? @phone1.gpu : "" %></td>
+		<td><%= @phone2 ? @phone2.gpu : "" %></td>
+		<td><%= @phone3 ? @phone3.gpu : "" %></td>
+	</tr>
+	<tr>
+		<td><b>WLAN</b></td>
+		<%= compareBool('wlan') %>
+		
+	</tr>
+	<tr>
+		<td><b>BlueTooth</b></td>
+		<%= compareBool('bt') %>
+	</tr>
+	<tr>
+		<td><b>InfraRed</b></td>
+		<%= compareBool('ir') %>
+	
+	</tr>
+	<tr>
+		<td><b>USB</b></td>
+		<%= compareBool('usb') %>
+	</tr>
+	<tr>
+		<td><b>NFC</b></td>
+		<%= compareBool('nfc') %>
+	</tr>
+	<tr>
+		<td><b>GPRS</b></td>
+	<%= compareBool('gprs') %>
+	</tr>
+	<tr>
+		<td><b>3G</b></td>
+		<%= compareBool('g3g') %>
+	</tr>
+	<tr>
+		<td><b>Other</b></td>
+		<td><%= @phone1 && @phone1.other ? @phone1.other : "" %></td>
+		<td><%= @phone2 && @phone2.other ? @phone2.other : "" %></td>
+		<td><%= @phone3 && @phone3.other ? @phone3.other : "" %></td>
+	</tr>
+</table>
+
+</div>
+
+
+</div>
+</div>
